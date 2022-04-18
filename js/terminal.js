@@ -13,11 +13,10 @@ let autowriteQueue = [];
 function ready() {
   term = $("#terminal");
 
-  $.ajax("phputil/lastlogin.php").done(function(lastLogin) {
-    $.ajax("systeminfo.txt").done(function(data) {
-      data = data.replace("{USERAGENT}", navigator.userAgent);
-      data = data.replace("{LASTLOGIN}", lastLogin);
+  
 
+    $.ajax("../systeminfo.txt").done(function(data) {
+      
       terminalPrint(data);
     }).always(function() {
       setTimeout(function() {
@@ -28,7 +27,7 @@ function ready() {
         autowriteQueue.push("ls");
       }, 200);
     });
-  });
+  
 }
 
 function autoWrite() {

@@ -20,34 +20,30 @@ function cat(args) {
 }
 
 function ls(args) {
-  $.ajax("phputil/gettermfiles.php")
-  .done(function(data) {
-    let ar = JSON.parse(data);
+  let ar = ["about.txt", "welcome.txt"];
 
-    for (var v in ar) {
-      let str = ar[v];
 
-      if ((args.length < 1 || args[0] != "-a") && str.match(/^(\.+)/gm)) {
-        continue;
-      }
+  for (var v in ar) {
+    let str = ar[v];
 
-      var isDirectory = ar[v].match(/\.\w+/g) == null;
-      if (isDirectory) {
-        str = `<span class="lsdir">` + str + `</span>`;
-      } else {
-        str = `<a class="lsfile" href="#" onclick="clickCmd('cat ` + ar[v] + `')">` + str + `</a>`
-      }
-
-      terminalPrint(str + "&#9;", false);
+    if ((args.length < 1 || args[0] != "-a") && str.match(/^(\.+)/gm)) {
+      continue;
     }
 
-    terminalPrint("");
-  })
-  .fail(function() {
-  })
-  .always(function() {
-    cmdDone();
-  });
+    var isDirectory = ar[v].match(/\.\w+/g) == null;
+    if (isDirectory) {
+      str = `<span class="lsdir">` + str + `</span>`;
+    } else {
+      str = `<a class="lsfile" href="#" onclick="clickCmd('cat ` + ar[v] + `')">` + str + `</a>`
+    }
+
+    terminalPrint(str + "&#9;", false);
+  }
+
+  terminalPrint("");
+  cmdDone();
+
+  
 }
 
 function cd(args) {
