@@ -1,0 +1,5 @@
+<b>Welcome!</b><br/>
+My name is Stanislas Bagnol, a third year computer science and math student from Lyon, France.<br/>
+For more about me, check 'about.txt'<br/>
+
+
