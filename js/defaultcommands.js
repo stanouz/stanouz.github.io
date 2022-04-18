@@ -20,7 +20,7 @@ function cat(args) {
 }
 
 function ls(args) {
-  let ar = ["about.txt", "welcome.txt"];
+  let ar = ["about.txt", "welcome.txt", "projects.txt"];
 
 
   for (var v in ar) {

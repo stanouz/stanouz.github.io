@@ -2,9 +2,10 @@ Welcome to stanouz interactive web terminal portfolio<br/>
 <br/>
 &#9; * Repository: <a href="https://github.com/stanouz/stanouz.github.io.git">https://github.com/stanouz/stanouz.github.io.git</a><br/>
 &#9; * Support: stanislas.bagnol@etu.univ-lyon1.fr<br/>
+&#9; * Git profile : <a href="https://github.com/stanouz"> stanouz </a><br/>
 <br/>
 Despite being a traditional-looking terminal, you may use your mouse to navigate links on the page.<br/>
-This is still a normal website!<br/>
+This is still a normal website! But you can also use command line (check 'help' command ^^).<br/>
 <br/>
 67 packages can be updated.<br/>
 11 updates are security updates.<br/>
