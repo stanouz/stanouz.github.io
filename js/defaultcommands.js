@@ -33,13 +33,9 @@ function ls(args) {
   
     const regex = `${directory}`;
     const found = str.match(regex);
-    console.log(found);
     if(found && directory!="/"){
       continue;
     }
-
-    
-
 
     str = `<a class="lsdir" href="#" onclick="clickCmd('cd ` + str + `')">` + str + `</a> &nbsp;`;
     terminalPrint(str + "&#9;", false);
@@ -62,7 +58,6 @@ function ls(args) {
     }
     
     str = str.replace(/\/.*\//, "");
-    console.log(str);
 
     str = `<a class="lsfile" href="#" onclick="clickCmd('cat ` + str + `')">` + str + `</a> &nbsp;`;
 
@@ -79,9 +74,7 @@ function ls(args) {
 
 function cd(args) {
   let url = "https://stanouz.github.io";
-  
-
-  console.log(args);  
+   
   if(args.length>0 && args < "~"){
     if(args[0].length>0){
       if(args[0] < "/"){
@@ -92,7 +85,7 @@ function cd(args) {
   }
   else{
     if(directory!="/"){
-      document.location.href = url;
+      document.location.href = "/";
     }
       
   }
@@ -102,19 +95,12 @@ function cd(args) {
 
 function help() {
   let i = 1;
-  for (var c in cmds) {
-    var notlast = (i != Object.keys(cmds).length);
-    var str = `<a href="#" class="helpcmd" onclick="clickCmd('` + c + `')">` + c + `</a>`
 
-    terminalPrint(str, !notlast);
-
-    if (notlast) {
-      terminalPrint(", ", false);
-    }
-
-    i++;
-  }
-
+  terminalPrint("cat file </br>", false);
+  terminalPrint("ls </br>", false);
+  terminalPrint("cd [directory] </br>", false);
+  terminalPrint("help </br>", false);
+  
   cmdDone();
 }
 

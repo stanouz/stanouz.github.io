@@ -14,7 +14,7 @@ let autowriteQueue = [];
 function ready() {
   term = $("#terminal");
 
-  
+
   if(directory=="/"){
       $.ajax("../systeminfo.txt").done(function(data) {
         
@@ -22,8 +22,9 @@ function ready() {
       }).always(function() {
         setTimeout(function() {
           addInputPrefix();
-
+          
           setInterval(autoWrite, 80);
+          autowriteQueue.push("help");
           autowriteQueue.push("ls");
         }, 200);
       });
