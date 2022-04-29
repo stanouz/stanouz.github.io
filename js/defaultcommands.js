@@ -1,5 +1,10 @@
+let txtFile = ["about.txt", "welcome.txt", "projects.txt"];
+let directories = ["/", "/stanouz"]; 
+
+
 function cat(args) {
   let path = window.location.pathname + "terminalfiles/";
+  
 
   if (args[0] == null) {
     cmdDone();
@@ -20,25 +25,26 @@ function cat(args) {
 }
 
 function ls(args) {
-  let ar = ["about.txt", "welcome.txt", "projects.txt"];
 
-
-  for (var v in ar) {
-    let str = ar[v];
-
+  for (var v in txtFile) {
+    let str = txtFile[v];
     if ((args.length < 1 || args[0] != "-a") && str.match(/^(\.+)/gm)) {
       continue;
     }
 
-    var isDirectory = ar[v].match(/\.\w+/g) == null;
-    if (isDirectory) {
-      str = `<span class="lsdir">` + str + `</span>`;
-    } else {
-      str = `<a class="lsfile" href="#" onclick="clickCmd('cat ` + ar[v] + `')">` + str + `</a>`
-    }
+    str = `<a class="lsfile" href="#" onclick="clickCmd('cat ` + str + `')">` + str + `</a>`
 
     terminalPrint(str + "&#9;", false);
   }
+
+
+  for (var d in directories) {
+    let str = directories[d];
+    str = `<a class="lsdir" href="#" onclick="clickCmd('cd ` + str + `')">` + str + `</a>`;
+    terminalPrint(str + "&#9;", false);
+  }
+
+
 
   terminalPrint("");
   cmdDone();
@@ -47,21 +53,14 @@ function ls(args) {
 }
 
 function cd(args) {
-  var resp = "bash: cd: {dir} Permission denied";
-  var dir = "/:";
 
-  if (args.length > 0) {
-    var isDirectory = args[0].match(/\.\w+/g) == null;
-    if (!isDirectory) {
-      resp = "bash: cd: " + args[0] + ": Not a directory";
-    } else {
-      dir = args[0] + ":";
+  if(args.length>0){
+    if(args[0] < "/"){
+      args = '/'+args;
     }
   }
-
-  resp = resp.replace("{dir}", dir);
-  terminalPrint(resp);
-
+  
+  document.location.href = "https://stanouz.github.io"+args;
   cmdDone();
 }
 

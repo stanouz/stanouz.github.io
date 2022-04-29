@@ -1,5 +1,6 @@
+let directory = document.getElementById("directory").getAttribute("directory");
 let cmds = [];
-let printTemplate = `<span class="prefix"><span class="userdomain">visitor@stanouz</span>:<span class="tilde">~</span>&#36; &nbsp;</span>`;
+let printTemplate = `<span class="prefix"><span class="userdomain">visitor@stanouz</span>:<span class="tilde">~` + directory + `</span>&#36; &nbsp;</span>`;
 let inputBoxTemplate = `<input type="text" id="terminput" name="terminput">`;
 let textStampTemplate = `<span class="textstamp">{TEXT}</span><br/>`;
 let printTxtTemplate = `<span class="print">{TEXT}</span>`;
