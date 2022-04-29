@@ -79,7 +79,7 @@ function ls(args) {
 
 function cd(args) {
   let url = "https://stanouz.github.io";
-  url = "";
+  
 
   console.log(args);  
   if(args.length>0 && args < "~"){
@@ -87,12 +87,12 @@ function cd(args) {
       if(args[0] < "/"){
         args = '/'+args;
       } 
-      document.location.href = args + ".html";
+      document.location.href = url + args + ".html";
     }
   }
   else{
     if(directory!="/"){
-      document.location.href = "/";
+      document.location.href = url;
     }
       
   }
