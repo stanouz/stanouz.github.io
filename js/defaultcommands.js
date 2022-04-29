@@ -6,6 +6,9 @@ let directories = ["~",
                   "/portfolio"]; 
 
 
+
+
+
 function cat(args) {
   let path = directory+"/";
 
@@ -30,10 +33,16 @@ function cat(args) {
 function ls(args) {
   for (var d in directories) {
     let str = directories[d];
-  
+    
+    if(str == directory){
+      continue;
+    }
+    
     const regex = `${directory}`;
     const found = str.match(regex);
-    if(found && directory!="/"){
+    
+    if(!found && directory!="/" && str!= "~"){
+      
       continue;
     }
 
@@ -64,23 +73,40 @@ function ls(args) {
     terminalPrint(str + "&#9;", false);
   }
 
-
-
   terminalPrint("");
-  cmdDone();
-
-  
+  cmdDone();  
 }
 
 function cd(args) {
   let url = "https://stanouz.github.io";
-   
+  url = ""; 
+
   if(args.length>0 && args < "~"){
     if(args[0].length>0){
-      if(args[0] < "/"){
+      if(args[0][0] != "/"){
         args = '/'+args;
       } 
-      document.location.href = url + args + ".html";
+
+      if(args==directory){
+        cmdDone();
+        return;
+      }
+    
+      let find = false;
+      for(var d in directories){
+      
+        if(directories[d]==args){
+          find = true;    
+        }
+      }
+      
+      if(find){
+        document.location.href = url + args + ".html";
+      }
+      else{
+        terminalPrint("cd: no such file or directory: "+args+"</br>", false);
+      }
+      
     }
   }
   else{
@@ -99,10 +125,18 @@ function help() {
   terminalPrint("cat file </br>", false);
   terminalPrint("ls </br>", false);
   terminalPrint("cd [directory] </br>", false);
+  terminalPrint("clear </br>", false);
   terminalPrint("help </br>", false);
   
   cmdDone();
 }
+
+
+function clear(){
+  document.getElementById("terminal").innerHTML = "";
+  addInputPrefix();
+}
+
 
 function clickCmd(cmd) {
   autowriteQueue.push(cmd);
@@ -113,6 +147,7 @@ function ready() {
   addCmd("ls", ls);
   addCmd("cd", cd);
   addCmd("help", help);
+  addCmd("clear", clear);
 }
 
 $(document).ready(ready);

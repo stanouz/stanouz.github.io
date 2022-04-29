@@ -93,6 +93,7 @@ function addInputPrefix() {
 
 function actEnter() {
   let v = inputBox.val();
+  
   stampInputBox();
   callCmd(v);
 }

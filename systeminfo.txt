@@ -1,4 +1,4 @@
-Welcome to stanouz interactive web terminal portfolio<br/>
+Welcome to stanouz interactive web terminal<br/>
 <br/>
 &#9; * Repository: <a href="https://github.com/stanouz/stanouz.github.io.git">https://github.com/stanouz/stanouz.github.io.git</a><br/>
 &#9; * Support: stanislas.bagnol@etu.univ-lyon1.fr<br/>
