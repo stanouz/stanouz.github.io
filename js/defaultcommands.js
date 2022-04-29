@@ -79,7 +79,7 @@ function ls(args) {
 
 function cd(args) {
   let url = "https://stanouz.github.io";
-
+  url = "";
   if(args.length>0 && args < "~"){
     if(args[0].length>0){
       if(args[0][0] != "/"){
