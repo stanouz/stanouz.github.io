@@ -1,10 +1,13 @@
-let txtFile = ["about.txt", "welcome.txt", "projects.txt"];
-let directories = ["/", "/stanouz"]; 
+let txtFile = ["/portfolio/welcome.txt",
+               "/portfolio/about.txt", 
+               "/portfolio/projects.txt"];
+
+let directories = ["~",
+                  "/portfolio"]; 
 
 
 function cat(args) {
-  let path = window.location.pathname + "terminalfiles/";
-  
+  let path = directory+"/";
 
   if (args[0] == null) {
     cmdDone();
@@ -25,22 +28,44 @@ function cat(args) {
 }
 
 function ls(args) {
-
-  for (var v in txtFile) {
-    let str = txtFile[v];
-    if ((args.length < 1 || args[0] != "-a") && str.match(/^(\.+)/gm)) {
+  for (var d in directories) {
+    let str = directories[d];
+  
+    const regex = `${directory}`;
+    const found = str.match(regex);
+    console.log(found);
+    if(found && directory!="/"){
       continue;
     }
 
-    str = `<a class="lsfile" href="#" onclick="clickCmd('cat ` + str + `')">` + str + `</a>`
+    
 
+
+    str = `<a class="lsdir" href="#" onclick="clickCmd('cd ` + str + `')">` + str + `</a> &nbsp;`;
     terminalPrint(str + "&#9;", false);
   }
 
+  for (var v in txtFile) {
+    let str = txtFile[v];
 
-  for (var d in directories) {
-    let str = directories[d];
-    str = `<a class="lsdir" href="#" onclick="clickCmd('cd ` + str + `')">` + str + `</a>`;
+    const regex = `${directory}\/.*\.txt`;
+    const found = str.match(regex);
+   
+    if(!found){
+      continue;
+    }
+
+    
+
+    if ((args.length < 1 || args[0] != "-a") && str.match(/^(\.+)/gm)) {
+      continue;
+    }
+    
+    str = str.replace(/\/.*\//, "");
+    console.log(str);
+
+    str = `<a class="lsfile" href="#" onclick="clickCmd('cat ` + str + `')">` + str + `</a> &nbsp;`;
+
     terminalPrint(str + "&#9;", false);
   }
 
@@ -53,14 +78,25 @@ function ls(args) {
 }
 
 function cd(args) {
+  let url = "https://stanouz.github.io";
+  url = "";
 
-  if(args.length>0){
-    if(args[0] < "/"){
-      args = '/'+args;
+  console.log(args);  
+  if(args.length>0 && args < "~"){
+    if(args[0].length>0){
+      if(args[0] < "/"){
+        args = '/'+args;
+      } 
+      document.location.href = args + ".html";
     }
   }
-  
-  document.location.href = "https://stanouz.github.io"+args;
+  else{
+    if(directory!="/"){
+      document.location.href = "/";
+    }
+      
+  }
+ 
   cmdDone();
 }
 

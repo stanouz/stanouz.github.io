@@ -1,6 +1,6 @@
 let directory = document.getElementById("directory").getAttribute("directory");
 let cmds = [];
-let printTemplate = `<span class="prefix"><span class="userdomain">visitor@stanouz</span>:<span class="tilde">~` + directory + `</span>&#36; &nbsp;</span>`;
+let printTemplate = `<span class="prefix"><span class="userdomain">visitor@stanouz</span>:<span class="tilde">~` + directory + ` </span>&#36; &nbsp;</span>`;
 let inputBoxTemplate = `<input type="text" id="terminput" name="terminput">`;
 let textStampTemplate = `<span class="textstamp">{TEXT}</span><br/>`;
 let printTxtTemplate = `<span class="print">{TEXT}</span>`;
@@ -15,20 +15,25 @@ function ready() {
   term = $("#terminal");
 
   
+  if(directory=="/"){
+      $.ajax("../systeminfo.txt").done(function(data) {
+        
+        terminalPrint(data);
+      }).always(function() {
+        setTimeout(function() {
+          addInputPrefix();
 
-    $.ajax("../systeminfo.txt").done(function(data) {
-      
-      terminalPrint(data);
-    }).always(function() {
-      setTimeout(function() {
-        addInputPrefix();
-
-        setInterval(autoWrite, 80);
-        autowriteQueue.push("cat welcome.txt");
-        autowriteQueue.push("ls");
-      }, 200);
-    });
-  
+          setInterval(autoWrite, 80);
+          autowriteQueue.push("ls");
+        }, 200);
+      });
+  }
+  else{
+    addInputPrefix();
+    setInterval(autoWrite, 80);
+    autowriteQueue.push("ls");
+        
+  }
 }
 
 function autoWrite() {
