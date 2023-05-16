@@ -1,7 +1,7 @@
-PyDeepan - It is an expression recognition research project I worked on. It uses machine learning algorithm to predict an expression based on several
+PyDeepan - An expression recognition research project I worked on. It uses machine learning algorithm to predict an expression based on several
 position of human body stored in big datasets. I had to add a real time motion capture functionality in order to predict expression live. The main
 parts of the job were to capture the data, transform it into the format used by the neural network and then predict the expression. I also provide a 
-3D vizualization tool.
+3D vizualization tool using <a href="https://www.panda3d.org/"> Panda3D</a>.
 <hr/>
 <br/>
 <a href="https://github.com/stanouz/smart-city">Smart city</a> - A distributed method for assigning parking spaces to smart vehicles. Cars and 
