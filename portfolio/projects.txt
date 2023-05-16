@@ -1,3 +1,9 @@
+PyDeepan - It is an expression recognition research project I worked on. It uses machine learning algorithm to predict an expression based on several
+position of human body stored in big datasets. I had to add a real time motion capture functionality in order to predict expression live. The main
+parts of the job were to capture the data, transform it into the format used by the neural network and then predict the expression. I also provide a 
+3D vizualization tool.
+<hr/>
+<br/>
 <a href="https://github.com/stanouz/smart-city">Smart city</a> - A distributed method for assigning parking spaces to smart vehicles. Cars and 
 parking lots communicate using a messaging system, in order to negociate the best price for both. Prices are dynamically calculated by parkings 
 taking into account parameters like occupancy rate, parking time, fidelity bonuses... Cars offer prices and try to get the lowest price, they 
@@ -20,8 +26,3 @@ map editor software, then we developped a parsing tool in order to retrieve and 
 We also developped AI's for NPC and ennemies, NPC can just talk with the player when he is close enough. However, ennemies want to fight the player, when he 
 enters in their visibility radius, they run on him and if they can get close enough, they hit the player. Fortunatly, the player is faster than ennemies 
 so he can easily run away and go back to fight when he has enough pv. The game is over when player dies or all ennemies have been killed.
-<hr/>
-<br/>
-Computer Vision - I'm really interested about AI and data analysis so I study about Machine Learning and develop computer vision algorithm. I have already made a digit 
-recognition algorithm using TensorFlow and my goal is to make a Sudoku solver, where users just have to scan their sudoku grid so the program can recognize digits that are 
-already in the grid and guess the missing ones with a sudoku solving algorithm.
