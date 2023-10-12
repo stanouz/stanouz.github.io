@@ -12,13 +12,19 @@ parts of the job were to capture the data, transform it into the format used by 
 <hr />
 <br />
 
-<a href="/portfolio/taquin.pdf" target="_blank"> System Multi-Agent - Taquin Puzzle </a> -  The project aims to develop a multi-agent system to solve the Taquin puzzle, a classic sliding puzzle game where the goal is to rearrange the pieces to form a complete image. The primary goal of this project is to create a system where multiple agents work together to solve the Taquin puzzle efficiently. Each agent should contribute to finding a solution by performing specific tasks and collaborating with others. Agents need to communicate with each other to exchange information and coordinate actions. We tried differents heuristics to guide agents in evaluating the desirability of certain puzzle states and avoid blocking states. You will find more explanation in the link above.
+Lego Soccer Players - Our project involved creating a team of LEGO Mindstorms robots to play soccer. LEGO Mindstorms robots are equipped with programmable control bricks capable of controlling various types of motors. We started by building the robots and experimenting with different robot architectures. We also set up a communication server to interact with the robots and the ceiling-mounted cameras. We implemented a robot detection system by streaming camera feeds to determine their positions and send it to robots. Additionally, we designed offensive and defensive strategies to score goals and prevent the opposing team from scoring. This project was really interesting as it combined programming for movement calculations etc.., AI for strategies, networking for communication, and image analysis for field detection and player position.
 
 
 <hr />
 <br />
 
-Reinforcment Learning - I have done several small project to learn reinforcment learning principles, such as Value-Based algorithm (Markov Decision Process, Tabular QLearning or Deep QLearning using neural network) or Policy-Based algotithme (Hill Climb). Problems were pretty simple but implemented  in Python using <a href="https://gymnasium.farama.org/"> Gymnasium </a> and <a href="https://pytorch.org/"> PyTorch </a>, these implementations can be using in more complex problems using optimal hyperparameters. The goal of these small project was to understand how most used reinforcment learning algorithms works and how to tune hyperparameters correctly.
+<a href="/portfolio/taquin.pdf" target="_blank"> System Multi-Agent - Taquin Puzzle</a> -  The project aims to develop a multi-agent system to solve the Taquin puzzle, a classic sliding puzzle game where the goal is to rearrange the pieces to form a complete image. The primary goal of this project is to create a system where multiple agents work together to solve the Taquin puzzle efficiently. Each agent should contribute to finding a solution by performing specific tasks and collaborating with others. Agents need to communicate with each other to exchange information and coordinate actions. We tried differents heuristics to guide agents in evaluating the desirability of certain puzzle states and avoid blocking states. You will find more explanation in the link above.
+
+
+<hr />
+<br />
+
+Reinforcment Learning - I have done several small project to learn reinforcment learning principles, such as Value-Based algorithm (Markov Decision Process, Tabular QLearning or Deep QLearning using neural network) or Policy-Based algotithme (Hill Climb). Problems were pretty simple but implemented  in Python using <a href="https://gymnasium.farama.org/"> Gymnasium</a> and <a href="https://pytorch.org/"> PyTorch</a>, these implementations can be using in more complex problems using optimal hyperparameters. The goal of these small project was to understand how most used reinforcment learning algorithms works and how to tune hyperparameters correctly.
 
 <hr />
 <br />
