@@ -16,7 +16,6 @@ fetch(csvUrl)
   .then(response => response.text())
   .then(csvText => {
      const data = Papa.parse(csvText, { header: true }).data.slice(0, -1);
-    console.log(data);
      // Create a polyline and add it to the map
      const pathCoordinates = data.map(entry => [entry.Latitude, entry.Longitude]);
      

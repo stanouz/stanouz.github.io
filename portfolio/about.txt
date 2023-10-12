@@ -1,8 +1,8 @@
-My name is Stanislas Bagnol, I'm a first year computer science master degree student in Lyon, France.<br/>
+My name is Stanislas Bagnol, I'm a second year computer science master degree student in Lyon, France.<br/>
 I love programming and working on computer science projects particularly about AI. I plan to do my master degree in this field.<br/>
 I spend my free time doing sport and manual activities.<br/>
-I love bicycle (have been commuting by bike for 3 years) and I would to organize a bike trip all around Europe, or more...who knows?<br/>
+I love bicycle and bikepacking (just check my summer 2023 trip <a href="map.html">here</a>) <br/>
 I also ski, hike and climb.<br/>
 I love to do manual works like gardenning, sewing or bike mechanics.<br/>
-If you wanna see projects I made, just check 'projects.txt'.<br/>
+If you wanna see projects I made or worked on, just check 'projects.txt'.<br/>
 
