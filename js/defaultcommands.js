@@ -121,7 +121,7 @@ function cd(args) {
 function help() {
   let i = 1;
 
-  terminalPrint("cat file </br>", false);
+  terminalPrint("cat [file] </br>", false);
   terminalPrint("ls </br>", false);
   terminalPrint("cd [directory] </br>", false);
   terminalPrint("clear </br>", false);
