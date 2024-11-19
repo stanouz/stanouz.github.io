@@ -1,0 +1,59 @@
+name: Fetch Files from Dropbox
+
+on:
+  workflow_dispatch:
+    # This allows manual triggering of the workflow.
+
+jobs:
+  fetch-files:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Python environment (to use Dropbox API)
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    # Step 3: Install Dependencies
+    - name: Install Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install dropbox
+
+    # Step 4: Fetch Files from Dropbox
+    - name: Fetch Files from Dropbox
+      env:
+        DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+      run: |
+        python <<EOF
+        import dropbox
+        import os
+
+        # Initialize Dropbox Client
+        dbx = dropbox.Dropbox(os.environ['DROPBOX_ACCESS_TOKEN'])
+
+        # Define Dropbox path and local file path
+        dropbox_path = "/path/to/your/file"  # Replace with your file path
+        local_path = "./downloaded_file"    # Replace with the local save location
+
+        # Download the file
+        with open(local_path, "wb") as f:
+            metadata, res = dbx.files_download(path=dropbox_path)
+            f.write(res.content)
+
+        print(f"Downloaded {metadata.name} to {local_path}")
+        EOF
+
+    # Step 5: Add and Commit Changes
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add .
+        git commit -m "Add files from Dropbox"
+        git push
