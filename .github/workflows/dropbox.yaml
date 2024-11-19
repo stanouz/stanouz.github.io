@@ -37,30 +37,41 @@ jobs:
         # Initialize Dropbox Client
         dbx = dropbox.Dropbox(os.environ['DROPBOX_ACCESS_TOKEN'])
 
-        folder_path = ""  # Replace with the folder you want to list
+        def list_files_recursive(folder_path, indent=0):
+          """
+          Recursively list all files and folders in the specified Dropbox folder.
+          """
+          try:
+              # List the contents of the current folder
+              response = dbx.files_list_folder(path=folder_path)
+              
+              # Iterate through each entry in the folder
+              for entry in response.entries:
+                  if isinstance(entry, dropbox.files.FileMetadata):
+                      print("  " * indent + f"File: {entry.name}")
+                  elif isinstance(entry, dropbox.files.FolderMetadata):
+                      print("  " * indent + f"Folder: {entry.name}")
+                      # Recursive call for subfolders
+                      list_files_recursive(entry.path_lower, indent + 1)
+              
+              # Check for additional pages (pagination)
+              while response.has_more:
+                  response = dbx.files_list_folder_continue(response.cursor)
+                  for entry in response.entries:
+                      if isinstance(entry, dropbox.files.FileMetadata):
+                          print("  " * indent + f"File: {entry.name}")
+                      elif isinstance(entry, dropbox.files.FolderMetadata):
+                          print("  " * indent + f"Folder: {entry.name}")
+                          list_files_recursive(entry.path_lower, indent + 1)
+      
+          except dropbox.exceptions.ApiError as e:
+              print(f"Error accessing {folder_path}: {e}")
 
-        try:
-            print(f"Listing files in folder: {folder_path}")
-            response = dbx.files_list_folder(path=folder_path)
-        
-            # Iterate through the entries in the folder
-            for entry in response.entries:
-                if isinstance(entry, dropbox.files.FileMetadata):
-                    print(f"File: {entry.name}")
-                elif isinstance(entry, dropbox.files.FolderMetadata):
-                    print(f"Folder: {entry.name}")
-        
-            # Check for more files in paginated results
-            while response.has_more:
-                response = dbx.files_list_folder_continue(response.cursor)
-                for entry in response.entries:
-                    if isinstance(entry, dropbox.files.FileMetadata):
-                        print(f"File: {entry.name}")
-                    elif isinstance(entry, dropbox.files.FolderMetadata):
-                        print(f"Folder: {entry.name}")
-        
-        except dropbox.exceptions.ApiError as e:
-            print(f"Dropbox API error: {e}")
+        # Start the recursive listing from the root or a specific folder
+        folder_path = ""  # Replace with your starting folder path, or use "" for the root
+        print(f"Listing all files and folders starting from: {folder_path}")
+        list_files_recursive(folder_path)
+
         EOF
 
     # Step 5: Add and Commit Changes
