@@ -86,7 +86,7 @@ jobs:
             except dropbox.exceptions.ApiError as e:
                 print(f"Error accessing {folder_path}: {e}")
 
-        folder_path = "/path/to/start/folder"  # Replace with your Dropbox folder path
+        folder_path = ""  # Replace with your Dropbox folder path
         local_folder = "data"  # Local folder to save files
 
         print(f"Downloading files from Dropbox folder: {folder_path}")
