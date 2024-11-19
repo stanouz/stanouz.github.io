@@ -37,16 +37,30 @@ jobs:
         # Initialize Dropbox Client
         dbx = dropbox.Dropbox(os.environ['DROPBOX_ACCESS_TOKEN'])
 
-        # Define Dropbox path and local file path
-        dropbox_path = "/path/to/your/file"  # Replace with your file path
-        local_path = "./downloaded_file"    # Replace with the local save location
+        folder_path = ""  # Replace with the folder you want to list
 
-        # Download the file
-        with open(local_path, "wb") as f:
-            metadata, res = dbx.files_download(path=dropbox_path)
-            f.write(res.content)
-
-        print(f"Downloaded {metadata.name} to {local_path}")
+        try:
+            print(f"Listing files in folder: {folder_path}")
+            response = dbx.files_list_folder(path=folder_path)
+        
+            # Iterate through the entries in the folder
+            for entry in response.entries:
+                if isinstance(entry, dropbox.files.FileMetadata):
+                    print(f"File: {entry.name}")
+                elif isinstance(entry, dropbox.files.FolderMetadata):
+                    print(f"Folder: {entry.name}")
+        
+            # Check for more files in paginated results
+            while response.has_more:
+                response = dbx.files_list_folder_continue(response.cursor)
+                for entry in response.entries:
+                    if isinstance(entry, dropbox.files.FileMetadata):
+                        print(f"File: {entry.name}")
+                    elif isinstance(entry, dropbox.files.FolderMetadata):
+                        print(f"Folder: {entry.name}")
+        
+        except dropbox.exceptions.ApiError as e:
+            print(f"Dropbox API error: {e}")
         EOF
 
     # Step 5: Add and Commit Changes
