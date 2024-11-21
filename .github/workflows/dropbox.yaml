@@ -23,18 +23,43 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install dropbox
+       
 
     # Step 4: Download Files from Dropbox
     - name: Download Files from Dropbox
       env:
-        DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+        DROPBOX_REFRESH_TOKEN : ${{ secrets.DROPBOX_REFRESH_TOKEN}}
+        DROPBOX_APP_KEY : ${{ secrets.DROPBOX_APP_KEY}}
+        DROPBOX_APP_SECRET : ${{ secrets.DROPBOX_APP_SECRET}}
+        
       run: |
         python <<EOF
         import dropbox
         import os
 
+        def get_new_access_token(app_key, app_secret, refresh_token):
+           """Fetch a new access token using the refresh token."""
+           url = "https://api.dropbox.com/oauth2/token" 
+           payload = { "grant_type": "refresh_token", "refresh_token": refresh_token, }
+           # Use app key and secret for basic authentication 
+           response = requests.post(url, data=payload, auth=(app_key, app_secret))
+           if response.status_code == 200: 
+                data = response.json() 
+                return data["access_token"]
+           else:
+                raise Exception(f"Failed to refresh token: {response.status_code} - {response.text}")
+
+        
+        APP_KEY = os.environ['DROPBOX_APP_KEY'] 
+        APP_SECRET = os.environ['DROPBOX_APP_SECRET'] 
+        REFRESH_TOKEN = os.environ['DROPBOX_REFRESH_TOKEN']
+
+        ACCESS_TOKEN = get_new_access_token(APP_KEY, APP_SECRET, REFRESH_TOKEN)
+
+        
+
         # Initialize Dropbox Client
-        dbx = dropbox.Dropbox(os.environ['DROPBOX_ACCESS_TOKEN'])
+        dbx = dropbox.Dropbox(ACCESS_TOKEN)
 
         def save_file(file_metadata, local_folder):
             """
