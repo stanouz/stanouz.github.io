@@ -125,6 +125,13 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add data
-        git commit -m "Downloaded files from Dropbox"
-        git push
+        
+        # Check for changes
+        if [[ -n "$(git status --porcelain)" ]]; then
+          echo "Changes detected, committing and pushing..."
+          git add data
+          git commit -m "Downloaded files from Dropbox"
+          git push
+        else
+          echo "No changes detected, skipping commit and push."
+        fi
