@@ -36,6 +36,7 @@ jobs:
         python <<EOF
         import dropbox
         import os
+        import requests
 
         def get_new_access_token(app_key, app_secret, refresh_token):
            """Fetch a new access token using the refresh token."""
