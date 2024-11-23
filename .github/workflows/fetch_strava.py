@@ -47,3 +47,6 @@ if token_data:
         print("Fetched activities:", activities)
     else:
         print(f"Failed to fetch activities: {response.status_code} {response.text}")
+
+
+print(os.listdir(""))
