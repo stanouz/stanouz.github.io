@@ -49,4 +49,4 @@ if token_data:
         print(f"Failed to fetch activities: {response.status_code} {response.text}")
 
 
-print(os.listdir(""))
+print(os.listdir("."))
