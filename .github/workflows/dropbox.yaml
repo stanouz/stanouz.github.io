@@ -33,7 +33,7 @@ jobs:
         DROPBOX_APP_SECRET : ${{ secrets.DROPBOX_APP_SECRET}}
         
       run: |
-        python dropbox.py
+        python .github/workflows/dropbox.py
 
     # Step 5: Commit and Push Changes
     - name: Commit and Push Changes
