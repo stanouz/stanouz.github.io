@@ -45,8 +45,13 @@ def get_activity_stream(activity_id, access_token):
     
     if response.status_code == 200:
         print(response.json())
+        return response.json()
     else : 
         print(f"Failed to fetch activity stream : {response.status_code} {response.text}")
+
+    return None 
+
+
 
 # Refresh the token
 token_data = refresh_access_token()
@@ -84,7 +89,13 @@ if token_data:
 
                         if day == start_date.day and month == start_date.month and start_date.year == 2024: 
                             print("\t", activity, "\n")
-                            get_activity_stream(activity["id"], access_token)
+                            activity_stream = get_activity_stream(activity["id"], access_token)
+
+                            if activity_stream is not None : 
+                                with open("data/"+activ_date+"stream.json", 'w') as f: 
+                                    f.write(activity_stream)
+                                    print("\tStream saved")
+                            
                             print("="*30, "\n")
 
                             
