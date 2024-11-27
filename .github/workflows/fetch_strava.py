@@ -92,7 +92,7 @@ if token_data:
                             activity_stream = get_activity_stream(activity["id"], access_token)
 
                             if activity_stream is not None : 
-                                with open("data/"+activ_date+"stream.json", 'w') as f: 
+                                with open("data/"+activ_date+"/stream.json", 'w') as f: 
                                     f.write(activity_stream)
                                     print("\tStream saved")
                             
