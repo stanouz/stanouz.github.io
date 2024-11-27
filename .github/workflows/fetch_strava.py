@@ -63,7 +63,7 @@ if token_data:
                         start_date = activity['start_date_local']
                         start_date = datetime.datetime.strptime(start_date, '%Y-%m-%dT%H:%M:%SZ')
 
-                        if day == start_date.day and month == start_date.month: 
+                        if day == start_date.day and month == start_date.month and start_date.year == 2024: 
                             print(activity)
                             print("\t", "="*30, "\n")
                         
