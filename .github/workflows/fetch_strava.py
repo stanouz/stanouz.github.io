@@ -31,8 +31,18 @@ def refresh_access_token():
 def get_activity_stream(activity_id, access_token): 
 
     headers = {"Authorization": f"Bearer {access_token}"}
-    response = requests.get("https://www.strava.com/api/v3/activities/"+str(activity_id)+"/streams?keys=&key_by_type=", headers=headers)
 
+    url = f"https://www.strava.com/api/v3/activities/{activity_id}/streams"
+    params = {
+        'keys': 'distance,altitude,latlng',
+        'key_by_type': 'true'
+    }
+
+    
+    response = requests.get(url, headers=headers, params=params)
+    
+
+    
     if response.status_code == 200:
         print(response.json())
     else : 
