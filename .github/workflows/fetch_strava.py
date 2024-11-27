@@ -1,5 +1,6 @@
 import os
 import requests
+import datetime 
 
 def refresh_access_token():
     """Refresh Strava API access token using refresh token."""
@@ -45,6 +46,32 @@ if token_data:
     if response.status_code == 200:
         activities = response.json()
         print("Fetched activities:", activities)
+
+        activities_date = os.listdir("./data/")
+
+        for activ_date in activities_date:
+            print(activ_date)
+            try : 
+                day, month = activ_date.split("-")
+                day = int(day) 
+                month = int(month) 
+
+                for activity in activities : 
+                    try : 
+                        start_date = activity['start_date_local']
+                        start_date = datetime.datetime.strptime(start_date, '%Y-%m-%dT%H:%M:%SZ')
+
+                        if day == start_date.day and month == start_date.month: 
+                            print(activity)
+                            print("\t", "="*30, "\n")
+                        
+                        
+                    except : 
+                        continue 
+        
+            
+            except : 
+                continue 
     else:
         print(f"Failed to fetch activities: {response.status_code} {response.text}")
 
