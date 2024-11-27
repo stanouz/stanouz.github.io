@@ -29,7 +29,7 @@ def refresh_access_token():
         return None
 
 def get_activity_stream(activity_id, access_token): 
-      "Authorization: Bearer [[token]]"
+
     headers = {"Authorization": f"Bearer {access_token}"}
     response = requests.get("https://www.strava.com/api/v3/activities/"+str(activity_id)+"/streams?keys=&key_by_type=", headers=headers)
 
