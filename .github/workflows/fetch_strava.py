@@ -45,7 +45,7 @@ if token_data:
 
     if response.status_code == 200:
         activities = response.json()
-        print("Fetched activities:", activities)
+        #print("Fetched activities:", activities)
 
         activities_date = os.listdir("./data/")
 
