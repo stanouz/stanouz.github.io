@@ -50,6 +50,8 @@ if token_data:
         activities_date = os.listdir("./data/")
 
         for activ_date in activities_date:
+            if activ_date == ".gitkeep":
+                continue 
             print(activ_date)
             try : 
                 day, month = activ_date.split("-")
