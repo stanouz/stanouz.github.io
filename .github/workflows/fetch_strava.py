@@ -28,6 +28,15 @@ def refresh_access_token():
         print(f"Failed to refresh token: {response.status_code} {response.text}")
         return None
 
+def get_activity_stream(activity_id, access_token): 
+      "Authorization: Bearer [[token]]"
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = requests.get("https://www.strava.com/api/v3/activities/"+str(activity_id)+"/streams?keys=&key_by_type=", headers=headers)
+
+    if response.status_code == 200:
+        print(response.json())
+    else : 
+        print(f"Failed to fetch activity stream : {response.status_code} {response.text}")
 
 # Refresh the token
 token_data = refresh_access_token()
@@ -64,8 +73,11 @@ if token_data:
                         start_date = datetime.datetime.strptime(start_date, '%Y-%m-%dT%H:%M:%SZ')
 
                         if day == start_date.day and month == start_date.month and start_date.year == 2024: 
-                            print(activity)
-                            print("\t", "="*30, "\n")
+                            print("\t", activity, "\n")
+                            get_activity_stream(activity["id"], access_token)
+                            print("="*30, "\n")
+
+                            
                         
                         
                     except : 
