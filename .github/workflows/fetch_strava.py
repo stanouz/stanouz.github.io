@@ -1,6 +1,7 @@
 import os
 import requests
 import datetime 
+import json 
 
 def refresh_access_token():
     """Refresh Strava API access token using refresh token."""
@@ -92,8 +93,8 @@ if token_data:
                             activity_stream = get_activity_stream(activity["id"], access_token)
 
                             if activity_stream is not None : 
-                                with open("data/"+activ_date+"/stream.json", 'w') as f: 
-                                    f.write(activity_stream)
+                                with open("data/"+activ_date+"/stream.json", 'w') as file: 
+                                    json.dump(activity_stream, file, indent=4)
                                     print("\tStream saved")
                             
                             print("="*30, "\n")
