@@ -50,12 +50,37 @@ function parseGPX(xmlDoc) {
 
 
 // fetch data folder and display folder inside 
-fetch('data/files.json')
+fetch('data/first_depth_folders.json')
     .then(response => response.json())
     .then(data => {
+
+            // data are like date ["10-05", "09-05", "08-05"]
+            // sort data by date
+            data.sort(function(a, b){
+                let a_date = a.split("-");
+                let b_date = b.split("-");
+
+                a_day = parseInt(a_date[0]);
+                a_month = parseInt(a_date[1]);
+
+                b_day = parseInt(b_date[0]);
+                b_month = parseInt(b_date[1]);
+                
+                if (a_month == b_month){
+                    return a_day - b_day;
+                }
+                else{
+                    return a_month - b_month;
+                }
+                
+            });
+            
+
+
             data.forEach(element => {
                 
-                fetch("data/"+element.folder+"/"+element.txt_file)
+
+                fetch("data/"+element+"/recap.txt")
                 .then(response => response.text())
                 .then(text => {
                     let all_lines = text.split(/\r?\n|\r/);
@@ -88,9 +113,9 @@ fetch('data/files.json')
                     let html_element = document.getElementById("blog_content");
 
                     let title_date = document.createElement("p");
-                    title_date.innerHTML = "<strong>"+element.folder+"</strong>";
+                    title_date.innerHTML = "<strong>"+element+"</strong>";
                     title_date.className = "text-muted";
-                    title_date.setAttribute("id", element.folder);
+                    title_date.setAttribute("id", element);
                     html_element.appendChild(title_date);
                 
                     let tmp_div = document.createElement("div");
@@ -114,7 +139,7 @@ fetch('data/files.json')
                             let end_tag = group.indexOf("</img>");
 
 
-                            img.src = "data/"+element.folder+"/"+group.substring(start_tag+5, end_tag);
+                            img.src = "data/"+element+"/"+group.substring(start_tag+5, end_tag);
 
                             img.className = "img-fluid mx-auto d-block mb-2 full-height-img";
 
