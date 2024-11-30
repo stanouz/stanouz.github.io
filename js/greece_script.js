@@ -2,7 +2,8 @@
 var map = L.map('map').setView([38.464524, 21.7726815], 9); // Set to Athens, Greece coordinates
 
 // Add OpenStreetMap Tile Layer
-L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png', {
+//https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: ''
 }).addTo(map);
 

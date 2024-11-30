@@ -111,5 +111,3 @@ if token_data:
     else:
         print(f"Failed to fetch activities: {response.status_code} {response.text}")
 
-
-print(os.listdir("./data/"))
