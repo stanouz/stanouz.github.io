@@ -55,17 +55,17 @@ jobs:
     - name: Save First-Depth Folders to JSON
       run: |
           python -c "
-            import os, json
-            
-            # List only first-depth folders in 'data/' directory
-            data_path = 'data'
-            first_depth_folders = [name for name in os.listdir(data_path) if os.path.isdir(os.path.join(data_path, name))]
-            
-            # Save to JSON file
-            with open('first_depth_folders.json', 'w') as f:
-                json.dump(first_depth_folders, f, indent=4)
-            
-            print('First-depth folders saved to first_depth_folders.json:', first_depth_folders)
+          import os, json
+          
+          # List only first-depth folders in 'data/' directory
+          data_path = 'data'
+          first_depth_folders = [name for name in os.listdir(data_path) if os.path.isdir(os.path.join(data_path, name))]
+          
+          # Save to JSON file
+          with open('first_depth_folders.json', 'w') as f:
+              json.dump(first_depth_folders, f, indent=4)
+          
+          print('First-depth folders saved to first_depth_folders.json:', first_depth_folders)
           "
   
       # Step 7: Commit and Push Directory JSON (if changes)
