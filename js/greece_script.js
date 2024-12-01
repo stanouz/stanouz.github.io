@@ -8,7 +8,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-var gpxUrl = 'data/test.gpx';
+var gpxUrl = 'data/grece.gpx';
 fetch(gpxUrl)
     .then(response => response.text()) // Read file as text
     .then(data => {
@@ -79,6 +79,9 @@ fetch('data/first_depth_folders.json')
 
             data.forEach(element => {
                 
+                let day_div = document.createElement("div");
+                day_div.id = element;
+                document.getElementById("blog_content").appendChild(day_div);
 
                 fetch("data/"+element+"/recap.txt")
                 .then(response => response.text())
@@ -111,9 +114,10 @@ fetch('data/first_depth_folders.json')
 
 
                     let html_element = document.getElementById("blog_content");
+                    html_element = day_div;
 
-                    let title_date = document.createElement("p");
-                    title_date.innerHTML = "<strong>"+element+"</strong>";
+                    let title_date = document.createElement("h3");
+                    title_date.innerHTML = "<strong>"+element.replace("-", " / ")+"</strong>";
                     title_date.className = "text-muted";
                     title_date.setAttribute("id", element);
                     html_element.appendChild(title_date);
@@ -165,12 +169,50 @@ fetch('data/first_depth_folders.json')
                         html_element.appendChild(tmp_div);
                     }
 
-                    let hr = document.createElement("hr");
-                    html_element.lastChild.appendChild(hr);                        
+                    fetch("data/"+element+"/stream.json") 
+                        .then(response => response.json())
+                        .then(data => {
+
+
+
+
+                            let map_div = document.createElement("div");
+                            map_div.id = "map_"+element;
+                            map_div.className = "text-center map";
+
+                            day_div.appendChild(map_div);
+
+                            let map_tmp = L.map(map_div.id).setView([data.latlng.data[0][0], data.latlng.data[0][1]], 9);
+
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: ''
+                            }).addTo(map_tmp);
+
+
+                            let latLngs = data.latlng.data;
+
+                            console.log(latLngs);
+
+                            let polyline = L.polyline(latLngs, { color: 'blue' }).addTo(map_tmp);
+
+                            map_tmp.fitBounds(polyline.getBounds());
+                           
+                        });
+
+                    //let hr = document.createElement("hr");
+                    //day_div.appendChild(hr);
+
+                                       
                 });
+
+                
+                
 
 
 
             });
+
+
+            
         
         });
