@@ -82,7 +82,7 @@ if token_data:
                 day, month = activ_date.split("-")
                 day = int(day) 
                 month = int(month) 
-
+                all_activities = []
                 for activity in activities : 
                     try : 
                         start_date = activity['start_date_local']
@@ -93,18 +93,18 @@ if token_data:
                             activity_stream = get_activity_stream(activity["id"], access_token)
 
                             if activity_stream is not None : 
-                                with open("data/"+activ_date+"/stream.json", 'w') as file: 
-                                    json.dump(activity_stream, file, indent=4)
-                                    print("\tStream saved")
-                            
-                            print("="*30, "\n")
-
-                            
-                        
-                        
+                                
+                                all_activities.append(activity_stream)
                     except : 
                         continue 
-        
+                        
+                if len(all_activities) > 0:
+                                
+                
+                    with open("data/"+activ_date+"/stream.json", 'w') as file: 
+                        json.dump(all_activities, file, indent=4)
+                        print("\tStream saved")
+                    
             
             except : 
                 continue 
