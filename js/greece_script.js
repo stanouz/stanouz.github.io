@@ -188,15 +188,17 @@ fetch('data/first_depth_folders.json')
                                 attribution: ''
                             }).addTo(map_tmp);
 
-
-                            let latLngs = data.latlng.data;
-
-                            console.log(latLngs);
-
-                            let polyline = L.polyline(latLngs, { color: 'blue' }).addTo(map_tmp);
-
-                            map_tmp.fitBounds(polyline.getBounds());
-                           
+                            data.forEach(activity => {
+                                
+                                
+                                let latLngs = activity.latlng.data;
+    
+                                console.log(latLngs);
+    
+                                let polyline = L.polyline(latLngs, { color: 'blue' }).addTo(map_tmp);
+    
+                                map_tmp.fitBounds(polyline.getBounds());
+                           };
                         });
 
                     //let hr = document.createElement("hr");
