@@ -188,17 +188,17 @@ fetch('data/first_depth_folders.json')
                                 attribution: ''
                             }).addTo(map_tmp);
 
-                            data.forEach(activity => {
+                            //data.forEach(activity => {
                                 
                                 
-                                let latLngs = activity.latlng.data;
+                                //let latLngs = activity.latlng.data;
     
-                                console.log(latLngs);
+                                //console.log(latLngs);
     
-                                let polyline = L.polyline(latLngs, { color: 'blue' }).addTo(map_tmp);
+                                //let polyline = L.polyline(latLngs, { color: 'blue' }).addTo(map_tmp);
     
-                                map_tmp.fitBounds(polyline.getBounds());
-                           };
+                                //map_tmp.fitBounds(polyline.getBounds());
+                           //};
                         });
 
                     //let hr = document.createElement("hr");
