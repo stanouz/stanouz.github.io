@@ -1,5 +1,5 @@
 // Initialize Leaflet Map
-var map = L.map('map').setView([38.464524, 21.7726815], 9); // Set to Athens, Greece coordinates
+var map = L.map('map').setView([47.693, 13.843], 8); // Set to Athens, Greece coordinates
 
 // Add OpenStreetMap Tile Layer
 //https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png
@@ -8,7 +8,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-var gpxUrl = 'data/grece.gpx';
+var gpxUrl = 'data_austria/austrias.gpx';
 fetch(gpxUrl)
     .then(response => response.text()) // Read file as text
     .then(data => {
