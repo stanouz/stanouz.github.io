@@ -75,12 +75,13 @@ fetch('data/first_depth_folders.json')
                 
             });
             
-            // filter folder by data of december month
+            // filter folder by data of august month
             data = data.filter(element => {
                 let date = element.split("-");
                 let month = parseInt(date[1]);
-                return month == 12;
+                return month == 8;
             });
+
 
             data.forEach(element => {
                 
