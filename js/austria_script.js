@@ -8,7 +8,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-var gpxUrl = 'data_austria/austria.gpx';
+var gpxUrl = 'data/austria.gpx';
 fetch(gpxUrl)
     .then(response => response.text()) // Read file as text
     .then(data => {
